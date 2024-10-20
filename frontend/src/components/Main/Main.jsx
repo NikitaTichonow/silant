@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { API_URL_USERS } from "../../api/api_user";
 
 function Main() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/car/datavehicle") 
+    fetch(API_URL_USERS) 
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -32,7 +33,7 @@ function Main() {
         <h1>Your Model Data</h1>
         <ul>
           {data.map((item) => (
-            <li key={item.id}>{item.name}</li> 
+            <li key={item.id}>{item.username}</li> 
           ))}
         </ul>
       </div>
