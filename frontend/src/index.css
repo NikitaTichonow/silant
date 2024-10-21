@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color:rgb(255, 255, 255);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -20,8 +21,15 @@ nav {
   min-height: calc(100vh - 70px - 64px);
 }
 
+.logo {
+  height: 350px;
+  width: 350px;
+  padding: 20px;
+}
 
-
+img {
+  text-align:center
+}
 
 .goods {
   display: grid;
@@ -169,4 +177,9 @@ body,
 .app {
   display: flex;
   position: relative;
+}
+
+
+.btn {
+ background-color: #2196F3;
 }
