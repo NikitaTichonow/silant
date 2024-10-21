@@ -1,6 +1,5 @@
 import React from "react";
 import { useAuth } from "../AuthContext/AuthContext";
-import { Login } from "../Login/Login";
 import { TechnicalDataSearch } from "../TechnicalDataSearch/TechnicalDataSearch";
 import logo from '../../assets/images/logo1.jpg'
 import logo2 from '../../assets/images/logo2.jpg'
@@ -14,7 +13,7 @@ function Main() {
       {isAuthenticated() ? (
         <>
           <h4 className="container content center">
-            
+          
           </h4>
         </>
       ) : (
@@ -23,7 +22,6 @@ function Main() {
             <img src={logo3} alt="logo" className="logo "/>
             <img src={logo} alt="logo" className="logo "/>
             <img src={logo2} alt="logo" className="logo"/>
-            <Login />
           </p>
           <p className="center">
             <TechnicalDataSearch />

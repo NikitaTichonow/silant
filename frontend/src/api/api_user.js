@@ -9,11 +9,11 @@ const API_URL_VERIFY = 'http://127.0.0.1:8000/api/token/verify/'
 
 
 export {
-    API_URL_CLIENT,
-    API_URL_ME,
-    API_URL_SERVICE_COMPANY,
-    API_URL_USERS,
-    API_URL_TOKEN,
-    API_URL_REFRESH,
-    API_URL_VERIFY
+    API_URL_CLIENT, //
+    API_URL_ME, //
+    API_URL_SERVICE_COMPANY, //
+    API_URL_USERS, //
+    API_URL_TOKEN, //
+    API_URL_REFRESH, //
+    API_URL_VERIFY //
 }
