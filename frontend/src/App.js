@@ -6,8 +6,13 @@ import Navigation from "./components/Navigation/Navigation";
 import { TechnicalData } from "./pages/TechnicalData";
 import { TechnicalMaintenance } from "./pages/TechnicalMaintenance";
 import { Complaints } from "./pages/Complaints";
-import { AuthProvider } from "./components/AuthContext/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./context/ProtectedRoute";
+import { CarDetails } from "./components/Details/CarDetails";
+import { TypeMaintenance } from "./components/Details/DataTypeMaintenance";
+import { Organization } from "./components/Details/DataOrganizationMaintenance";
+import { RecoveryMethod } from "./components/Details/DataRecoveryMethod";
+import { FailureNode } from "./components/Details/DataFailureNode";
 
 function App() {
   return (
@@ -38,6 +43,46 @@ function App() {
             element={
               <ProtectedRoute>
                 <Complaints />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/car/:id"
+            element={
+              <ProtectedRoute>
+                <CarDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/car/datatypeofmaintenance/:name"
+            element={
+              <ProtectedRoute>
+                <TypeMaintenance />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/car/dataorganizationofmaintenance/:name"
+            element={
+              <ProtectedRoute>
+                <Organization />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/car/datarecoverymethod/:name"
+            element={
+              <ProtectedRoute>
+                <RecoveryMethod />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/car/datafailurenode/:name"
+            element={
+              <ProtectedRoute>
+                <FailureNode />
               </ProtectedRoute>
             }
           />

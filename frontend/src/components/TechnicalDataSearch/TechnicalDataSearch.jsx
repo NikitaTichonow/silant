@@ -16,10 +16,10 @@ function TechnicalDataSearch() {
 
     try {
       const response = await axios.get(`${API_URL_DATACAR}?id=${serialNumber}`);
-      setData(response.data[0]); // Предполагаем, что API возвращает массив
+      setData(response.data[0]);
       setError("");
     } catch (err) {
-      setError("Не удалось найти информацию по этому номеру.");
+      setError("Данных о машине с таким заводским номером нет в системе.");
       setData(null);
     }
   };
@@ -27,12 +27,13 @@ function TechnicalDataSearch() {
   return (
     <div className="">
       <h4>Поиск информации о технике</h4>
-      <div className="input-field">
+      <div className="input-field ">
         <input
           type="text"
           value={serialNumber}
           onChange={(e) => setSerialNumber(e.target.value)}
           placeholder="Введите заводской номер"
+          
         />
         <button className="btn" onClick={handleSearch}>
           Поиск
@@ -48,8 +49,8 @@ function TechnicalDataSearch() {
           <table className="striped" style={{ width: "100%" }}>
             <thead>
               <tr>
-                <th style={{ width: "30%" }}>Поле</th>
-                <th style={{ width: "70%" }}>Значение</th>
+                <th style={{ width: "30%" }}></th>
+                <th style={{ width: "70%" }}></th>
               </tr>
             </thead>
             <tbody>
@@ -70,20 +71,12 @@ function TechnicalDataSearch() {
                 <td>{data.engineModel.description}</td>
               </tr>
               <tr>
-                <td>Заводской номер двигателя</td>
-                <td>{data.serialNumberEngine}</td>
-              </tr>
-              <tr>
                 <td>Модель трансмиссии</td>
                 <td>{data.transmissionModel.name}</td>
               </tr>
               <tr>
                 <td>Описание модели трансмиссии</td>
                 <td>{data.transmissionModel.description}</td>
-              </tr>
-              <tr>
-                <td>Заводской номер трансмиссии</td>
-                <td>{data.serialNumberTransmission}</td>
               </tr>
               <tr>
                 <td>Модель переднего моста</td>
@@ -93,11 +86,6 @@ function TechnicalDataSearch() {
                 <td>Описание модели переднего моста</td>
                 <td>{data.driveAxleModel.description}</td>
               </tr>
-              <tr>
-                <td>Заводской номер переднего моста</td>
-                <td>{data.serialNumberDriveAxle}</td>
-              </tr>
-              {/* Добавьте остальные поля по аналогии */}
             </tbody>
           </table>
         </div>

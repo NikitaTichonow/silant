@@ -3,6 +3,11 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions
 from . import serializer
 from . import models
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializer import CustomTokenObtainPairSerializer
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 
 class ReadOnly(permissions.BasePermission):

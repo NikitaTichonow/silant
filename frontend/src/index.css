@@ -1,12 +1,17 @@
 body {
   margin: 0;
-  background-color:rgb(255, 255, 255);
+  /* background: url("../src/assets/images/logo4.png") no-repeat center;
+  background-size: cover;
+  background-size: 40%; */
+  /* Для добавления прозрачности используем rgba */
+  background-color: rgba(255, 255, 255, 0.2); /* Пример: белый с 50% прозрачностью */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -40,21 +45,16 @@ nav {
 }
 
 .logo {
-  height: 350px;
-  width: 350px;
-  padding: 20px;
+  height: 200px;
+  padding-right: 4rem;
 }
 
-img {
-  text-align:center
+@media (max-width: 780px) {
+  .logo {
+    height: 50px; 
+    padding-right: 2rem;
+  }
 }
-
-.goods {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
-}
-
 
 .card-content {
   flex-grow: 1;
@@ -77,12 +77,6 @@ img {
     border-radius: 10px;
   }
 }
-
-
-
-/* .cart-quantity {
-
-} */
 
 
 .basket-list {

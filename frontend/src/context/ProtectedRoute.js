@@ -1,9 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext/AuthContext'; // Импортируйте ваш контекст аутентификации
+import { useAuth } from './AuthContext';
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth(); // Получите информацию о пользователе из контекста
+  const { user } = useAuth();
 
   if (!user) {
     // Если пользователь не авторизован, перенаправляем на страницу входа

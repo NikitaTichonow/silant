@@ -1,4 +1,4 @@
-const API_URL_DATACAR = `http://127.0.0.1:8000/api/car/datacar`  
+const API_URL_DATACAR = `http://127.0.0.1:8000/api/car/datacar`
 const API_URL_DATACAR_ADD = 'http://127.0.0.1:8000/api/car/datacaradd'
 const API_URL_DATACAR_FULL = 'http://127.0.0.1:8000/api/car/datacarfull'
 const API_URL_DATA_COMPLAINT = 'http://127.0.0.1:8000/api/car/datacomplaint'

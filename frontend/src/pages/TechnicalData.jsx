@@ -1,64 +1,75 @@
 import React, { useEffect, useState } from "react";
-import { API_URL_DATACAR } from "../api/api_car";
-
+import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 function TechnicalData() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]); 
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(API_URL_DATACAR)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("There was a problem with your fetch operation:", error);
-        setLoading(false);
-      });
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError(new Error("Токен не найден. Пожалуйста, авторизуйтесь."));
+      return;
+    }
+
+    let decodedToken;
+    try {
+      decodedToken = jwtDecode(token);
+    } catch (decodeError) {
+      setError(new Error("Ошибка декодирования токена."));
+      return;
+    }
+
+    console.log("Декодированный токен:", decodedToken);
+
+    // Получаем cars из токена
+    const cars = decodedToken.cars;
+
+    if (!cars) {
+      setError(new Error("Не удалось получить данные автомобилей из токена."));
+      return;
+    }
+
+    // Обновляем состояние
+    setData(cars);
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
+  // Рендеринг компонента
+  if (error) {
+    return <div>Произошла ошибка: {error.message}</div>;
   }
 
+  if (!data || data.length === 0) {
+    return <div>Данных нет.</div>;
+  }
+
+  // Финальный рендеринг с таблицей данных
   return (
     <main className="container content">
-      <table className="centered">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Item Name</th>
-            <th>Item Price</th>
-            <th>Item Price</th>
-            <th>Item Price</th>
-            <th>Item Price</th>
-            <th>Item Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((data) => (
-            <tr key={data.id}>
-              <td>{data.serialNumberCar}</td>
-              <td>{data.vehicleModel.name}</td>
-              <td>{data.serialNumberDriveAxle}</td>
-              <td>{data.serialNumberTransmission}</td>
-              <td>{data.steeringAxleModel.name}</td>
-              <td>{data.supplyContract}</td>
-              <td>{data.transmissionModel.name}</td>
+      <div className="table-responsive">
+        <table className="highlight">
+          <thead>
+            <tr>
+              <th>Серийный номер вашей машины</th>
+              <th>Модель автомобиля</th>
+              <th>Договор поставки</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <>
-        
-      </>
+          </thead>
+          <tbody>
+            {data.map((item) => (
+              <tr key={item.id} className="center-align">
+                <td>
+                  <Link to={`/car/${item.id}`}>{item.serialNumberCar}</Link>
+                </td>
+                <td>{item.vehicleModel?.name || "Нет данных"}</td>
+                <td> № {item.supplyContract || "Нет данных"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </main>
   );
 }

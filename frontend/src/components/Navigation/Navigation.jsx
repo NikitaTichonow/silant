@@ -1,30 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Button } from "@mui/material";
-import { useAuth } from "../AuthContext/AuthContext";
+import React from 'react';
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
-const Navigation = () => {
-  const { isAuthenticated } = useAuth(); // Получаем состояние авторизации
+function NavigationBar() {
+  const { isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  const navItems = [
+    { label: 'Технические данные', path: '/technical-data' },
+    { label: 'Техническое обслуживание', path: '/maintenance' },
+    { label: 'Рекламации', path: '/complaints' },
+  ];
 
   return (
-    <AppBar position="static" >
-      {isAuthenticated() && ( // Отображаем навигацию только если пользователь авторизован
+    <AppBar position="static" color="transparent" elevation={0}>
+      {isAuthenticated() && (
         <Toolbar>
-          <>
-            <Button color="inherit" component={Link} to="/technical-data" >
-              Технические данные
-            </Button>
-            <Button color="inherit" component={Link} to="/maintenance">
-              Техническое обслуживание
-            </Button>
-            <Button color="inherit" component={Link} to="/complaints">
-              Рекламации
-            </Button>
-          </>
+          <Box display="flex" justifyContent="center" color={'white'} padding={6} gap={3} width="100%">
+            {navItems.map((item) => (
+              <Button
+                key={item.path}
+                color="#0d47a1 blue darken-2"
+                component={Link}
+                to={item.path}
+                sx={{
+                  fontWeight: location.pathname === item.path ? 'bold' : '700',
+                }}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </Box>
         </Toolbar>
       )}
     </AppBar>
   );
-};
+}
 
-export default Navigation;
+export default NavigationBar;
+
+

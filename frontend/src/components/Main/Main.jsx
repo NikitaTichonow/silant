@@ -1,27 +1,24 @@
 import React from "react";
-import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { TechnicalDataSearch } from "../TechnicalDataSearch/TechnicalDataSearch";
-import logo from '../../assets/images/logo1.jpg'
-import logo2 from '../../assets/images/logo2.jpg'
-import logo3 from '../../assets/images/logo3.jpg'
+import logo4 from '../../assets/images/logo4-1.png'
 
 function Main() {
   const { isAuthenticated } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div>
       {isAuthenticated() ? (
         <>
           <h4 className="container content center">
-          
+            Добро пожаловать, {user.username}
           </h4>
         </>
       ) : (
         <div className="container content">
           <p className="center">
-            <img src={logo3} alt="logo" className="logo "/>
-            <img src={logo} alt="logo" className="logo "/>
-            <img src={logo2} alt="logo" className="logo"/>
+            <img src={logo4} alt="logo" className="logo"/>
           </p>
           <p className="center">
             <TechnicalDataSearch />

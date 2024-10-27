@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useAuth } from "../AuthContext/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { Login } from "../Login/Login";
 
 function Header() {
-  const { user, loading, logout } = useAuth();
+  const { user, logout } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  console.log('Текущий пользователь:', user);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -22,17 +20,15 @@ function Header() {
   return (
     <nav className="blue darken-3">
       <div className="nav-wrapper">
-        <Link to="/" className="brand-logo">
+        <Link to="/technical-data" className="brand-logo">
           Сервисная книга для складской техники «Силант»
         </Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-          {loading ? (
+          {user ? (
             <li>
-              <span>Загрузка...</span>
-            </li>
-          ) : user ? (
-            <li>
-              <span>Welcome, {user.name}</span>
+              <h5 className="left center">
+                Добро пожаловать, {user.username}
+              </h5>
               <button
                 onClick={logout}
                 className="btn"
@@ -42,12 +38,14 @@ function Header() {
               </button>
             </li>
           ) : (
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <>
               <li>
-                <a href="/">+ 7-910-22-12-09, telegram</a>
+                <a href="/">+7-910-22-12-09, Telegram</a>
               </li>
               <li>
-                <button className="btn" onClick={handleOpenModal}>Авторизация</button>
+                <button className="btn" onClick={handleOpenModal}>
+                  Авторизация
+                </button>
                 {isModalOpen && (
                   <>
                     <div
@@ -58,7 +56,7 @@ function Header() {
                   </>
                 )}
               </li>
-            </ul>
+            </>
           )}
         </ul>
       </div>
