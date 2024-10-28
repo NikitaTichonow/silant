@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, Grid } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
@@ -18,24 +18,32 @@ function NavigationBar() {
       {isAuthenticated() && (
         <Toolbar>
           <Box display="flex" justifyContent="center" color={'white'} padding={6} gap={3} width="100%">
-            {navItems.map((item) => (
-              <Button
-                key={item.path}
-                color="#0d47a1 blue darken-2"
-                component={Link}
-                to={item.path}
-                sx={{
-                  fontWeight: location.pathname === item.path ? 'bold' : '700',
-                }}
-              >
-                {item.label}
-              </Button>
-            ))}
+            <Grid container spacing={3} justifyContent="center">
+              {navItems.map((item) => (
+                <Grid item xs={12} sm="auto" key={item.path}>
+                  <Button
+                    color="#d50000 red accent-4"
+                    component={Link}
+                    to={item.path}
+                    sx={{
+                      fontWeight: location.pathname === item.path ? 'bold' : '700',
+                      width: '100%', // Занять всю ширину в столбиковом режиме
+                    }}
+                  >
+                    {item.label}
+                  </Button>
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </Toolbar>
       )}
     </AppBar>
   );
+  
+
+
+
 }
 
 export default NavigationBar;

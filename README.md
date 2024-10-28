@@ -28,6 +28,10 @@
 
     http://127.0.0.1:8000/swagger/
 
+8. **Django Admin доступен по адресу:**
+
+    http://127.0.0.1:8000/admin/    
+
 <h2 align="center">Установка Frontend</h2>
 
 1. **Перейдите в папку frontend:**

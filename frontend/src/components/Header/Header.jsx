@@ -10,48 +10,47 @@ function Header() {
   console.log('Текущий пользователь:', user);
 
   const handleOpenModal = () => {
+    console.log("Открытие модального окна");
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
+    console.log("Закрытие модального окна");
     setIsModalOpen(false);
   };
 
+  const handleLogout = () => {
+    console.log("Выход из аккаунта");
+    logout();
+  };
+
   return (
-    <nav className="blue darken-3">
+    <nav className="#163E6C blue darken-3">
       <div className="nav-wrapper">
         <Link to="/technical-data" className="brand-logo">
-          Сервисная книга для складской техники «Силант»
+          <span className="full-title">Сервисная книга для складской техники «Силант»</span>
+          <span className="short-title">Силант</span>
         </Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           {user ? (
             <li>
-              <h5 className="left center">
-                Добро пожаловать, {user.username}
-              </h5>
-              <button
-                onClick={logout}
-                className="btn"
-                aria-label="Выйти из аккаунта"
-              >
+              <h5 className="left center nameuser">Добро пожаловать, {user.username}</h5>
+              <button onClick={handleLogout} className="btn" aria-label="Выйти из аккаунта">
                 Выйти
               </button>
             </li>
           ) : (
             <>
               <li>
-                <a href="/">+7-910-22-12-09, Telegram</a>
+                <span>+7-910-22-12-09, Telegram</span>
               </li>
               <li>
-                <button className="btn" onClick={handleOpenModal}>
+                <button className="btn #D20A11" onClick={handleOpenModal}>
                   Авторизация
                 </button>
                 {isModalOpen && (
                   <>
-                    <div
-                      className="modal-overlay"
-                      onClick={handleCloseModal}
-                    ></div>
+                    <div className="modal-overlay" onClick={handleCloseModal}></div>
                     <Login onClose={handleCloseModal} />
                   </>
                 )}
@@ -60,8 +59,34 @@ function Header() {
           )}
         </ul>
       </div>
+
+      {/* Кнопки внизу для мобильного отображения */}
+      <div className="mobile-buttons hide-on-large-only">
+        <ul>
+          {user ? (
+            <li>
+              <h5 className="left center nameuser">Добро пожаловать, {user.username}</h5>
+              <button onClick={handleLogout} className="btn " aria-label="Выйти из аккаунта">
+                Выйти
+              </button>
+            </li>
+          ) : (
+            <li >
+              <button className="btn #D20A11"  onClick={handleOpenModal}>
+              Авторизация
+              </button>
+              {isModalOpen && (
+                <>
+                  <div className="modal-overlay" onClick={handleCloseModal}></div>
+                  <Login onClose={handleCloseModal} />
+                </>
+              )}
+            </li>
+          )}
+        </ul>
+      </div>
     </nav>
-  );
+  );  
 }
 
 export { Header };

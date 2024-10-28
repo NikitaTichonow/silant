@@ -26,9 +26,9 @@ function Login({ onClose }) {
     }
 
     return (
-        <div className="card blue lighten-3" style={{ borderRadius: '10px', width: '400px', padding: '15px'}}>
-            <h5 className="center-align" style={{color: 'black'}}>Вход</h5>
-            <form onSubmit={handleLogin}>
+        <div className="card #163E6C blue darken-3" style={{ borderRadius: '10px', width: '400px', padding: '15px'}}>
+            <h5 className="center-align" style={{color: 'white'}}>Вход</h5>
+            <form id="login-form" onSubmit={handleLogin}>
                 <div className="input-field">
                     <input
                         id="username"
@@ -38,7 +38,7 @@ function Login({ onClose }) {
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
-                    <label htmlFor="username" style={{color: 'black', fontSize: '18px'}}>Имя пользователя</label>
+                    <label htmlFor="username" style={{color: 'white', fontSize: '18px'}}>Имя пользователя</label>
                 </div>
                 <div className="input-field">
                     <input
@@ -49,7 +49,7 @@ function Login({ onClose }) {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         />
-                    <label htmlFor="password" style={{color: 'black', fontSize: '18px'}}>Пароль</label>
+                    <label htmlFor="password" style={{color: 'white', fontSize: '18px'}}>Пароль</label>
                 </div>
                 <div className="center-align">
                     <button className="btn waves-effect waves-light" type="submit" disabled={loading}>
@@ -58,7 +58,7 @@ function Login({ onClose }) {
                 </div>
                 {errorMessage && <div className="red-text center-align">{errorMessage}</div>}
             </form>
-            <button onClick={onClose} className="btn red lighten-2">Закрыть</button>
+            <button onClick={onClose} className="material-icons">close</button>
         </div>
     );
 }

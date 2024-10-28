@@ -1,10 +1,6 @@
 body {
   margin: 0;
-  /* background: url("../src/assets/images/logo4.png") no-repeat center;
-  background-size: cover;
-  background-size: 40%; */
-  /* Для добавления прозрачности используем rgba */
-  background-color: rgba(255, 255, 255, 0.2); /* Пример: белый с 50% прозрачностью */
+  background-color: #EBE6D6;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -12,7 +8,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Мобильные устройства */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px; /* Уменьшение размера шрифта для мобильных устройств */
+  }
+}
 
+/* Планшеты */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    font-size: 16px; /* Увеличение размера шрифта для планшетов */
+  }
+}
+
+/* Десктопы */
+@media (min-width: 1025px) {
+  body {
+    font-size: 20px; /* Увеличение размера шрифта для декстопов */
+  }
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -22,14 +37,8 @@ nav {
   padding: 0 1rem;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+.content {
+  min-height: calc(100vh - 70px - 64px);
 }
 
 .card {
@@ -38,10 +47,42 @@ nav {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+  max-width: 400px; /* Максимальная ширина */
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
-.content {
-  min-height: calc(100vh - 70px - 64px);
+@media (max-width: 1000px) {
+  .card {
+      width: 90%; /* Уменьшаем ширину карточки */
+      margin: 0 auto; /* Центрируем карточку */
+      display: block; /* Убедитесь, что карточка отображается как блок */
+  }
+  .input-field input {
+      font-size: 16px; /* Уменьшаем размер шрифта полей ввода */
+      padding: 10px; /* Увеличиваем отступы для удобства */
+  }
+}
+
+@media (max-width: 380px) {
+  .card {
+    width: 40%; /* Уменьшаем ширину карточки */
+    margin: 0 auto; /* Центрируем карточку */
+    display: block; /* Убедитесь, что карточка отображается как блок */
+}
+.input-field input {
+  font-size: 13px; /* Уменьшаем размер шрифта полей ввода */
+  padding: 8px; /* Увеличиваем отступы для удобства */
+}
+}
+
+.material-icons {
+  cursor: pointer;
+  color: rgb(247, 247, 247); /* Или другой цвет по вашему выбору */
+  margin-top: 10px; /* Отступ сверху */
+  background-color:  transparent;
+  border: none;
 }
 
 .logo {
@@ -51,8 +92,8 @@ nav {
 
 @media (max-width: 780px) {
   .logo {
-    height: 50px; 
-    padding-right: 2rem;
+    height: 50px;
+    padding-right: 1rem;
   }
 }
 
@@ -60,52 +101,6 @@ nav {
   flex-grow: 1;
 }
 
-.cart {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-
-  cursor: pointer;
-  z-index: 5;
-  padding: 0.9rem;
-}
-
-@media (min-width: 767px) {
-  .cart {
-    top: 5rem;
-    bottom: unset;
-    border-radius: 10px;
-  }
-}
-
-
-.basket-list {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  background-color: #fff;
-  width: 50rem;
-  max-width: 95%;
-  box-shadow: inset -1px 3px 8px 5px #1f87ff, 2px 5px 16px 0px #0b325e, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-
-  animation: show 500ms ease-in-out;
-}
-
-
-
-.basket-close {
-  cursor: pointer;
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  color:#fff;
-}
-
-.basket-delete {
-  cursor: pointer;
-}
 
 @keyframes show {
   from {
@@ -117,12 +112,6 @@ nav {
     top: 50%;
     opacity: 1;
   }
-}
-
-.basket-quantity {
-  cursor: pointer;
-  vertical-align: middle;
-  color: #00796b
 }
 
 #toast-container {
@@ -189,5 +178,48 @@ body,
 
 
 .btn {
- background-color: #2196F3;
+ background-color: #D20A11;
 }
+
+.btn:hover {
+  color: black;
+  background-color: #EBE6D6
+}
+
+.nameuser {
+  padding-right: 2rem;
+}
+
+.full-title {
+  display: block;
+}
+.short-title {
+  display: none;
+}
+
+
+@media (max-width: 1040px) {
+  .full-title {
+    display: none;
+  }
+  .short-title {
+    display: block;
+  }
+
+  .full-contact {
+    display: none;
+  }
+
+
+  .nav-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.mobile-buttons {
+  
+  justify-content: center;
+  margin-top: -6px;
+  padding-bottom: 40px;
+}
+
